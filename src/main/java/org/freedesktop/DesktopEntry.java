@@ -75,7 +75,7 @@ public class DesktopEntry extends IniStyleFile {
 	}
 
 	@Override
-	public void checkAllValid() {
+	protected void checkAllValid() {
 		super.checkAllValid();
 		// TODO add more
 	}

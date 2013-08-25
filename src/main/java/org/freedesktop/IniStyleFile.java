@@ -157,7 +157,7 @@ public class IniStyleFile {
         data.remove(groupName);
     }
 
-    public void checkAllValid() {
+    protected void checkAllValid() {
         for (Entry<String, Map<String, String>> group: data.entrySet()) {
             checkValidGroupName(group.getKey());
             for (Entry<String, String> entry: group.getValue().entrySet()) {
