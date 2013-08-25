@@ -158,9 +158,9 @@ public class IniStyleFile {
     }
 
     protected void checkAllValid() {
-        for (Entry<String, Map<String, String>> group: data.entrySet()) {
+        for (Entry<String, Map<String, String>> group : data.entrySet()) {
             checkValidGroupName(group.getKey());
-            for (Entry<String, String> entry: group.getValue().entrySet()) {
+            for (Entry<String, String> entry : group.getValue().entrySet()) {
                 checkValidKeyValue(entry.getKey(), entry.getValue());
             }
         }
@@ -199,15 +199,15 @@ public class IniStyleFile {
             }
 
             if (valueType == ValueType.BOOLEAN) {
-            	if (!isValidBoolean(value)) {
+                if (!isValidBoolean(value)) {
                     throw new IllegalArgumentException("boolean is not true or false");
                 }
             }
 
             if (valueType == ValueType.INTEGER) {
-            	if (!isValidNumber(value)) {
-            		throw new IllegalArgumentException("type numeric is not a valid number");
-            	}
+                if (!isValidNumber(value)) {
+                    throw new IllegalArgumentException("type numeric is not a valid number");
+                }
             }
 
         }
@@ -215,16 +215,16 @@ public class IniStyleFile {
     }
 
     protected boolean isValidBoolean(String value) {
-    	return value.toLowerCase().equals("true") || value.toLowerCase().equals("false");
+        return value.toLowerCase().equals("true") || value.toLowerCase().equals("false");
     }
 
     protected boolean isValidNumber(String value) {
-    	try {
-    		Double.parseDouble(value);
-    		return true;
-    	} catch (NumberFormatException notDouble) {
-    		return false;
-    	}
-    	
+        try {
+            Double.parseDouble(value);
+            return true;
+        } catch (NumberFormatException notDouble) {
+            return false;
+        }
+
     }
 }

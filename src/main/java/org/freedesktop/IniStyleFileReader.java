@@ -7,7 +7,7 @@ import java.io.IOException;
  * Allows reading Desktop Entry files.
  */
 public class IniStyleFileReader {
-	/* TODO: preserve comments */
+    /* TODO: preserve comments */
 
     private BufferedReader reader;
 
