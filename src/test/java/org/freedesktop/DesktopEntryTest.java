@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Locale;
 
 import org.junit.Test;
 
@@ -32,6 +33,7 @@ public class DesktopEntryTest {
                 "Version=1.0\n" +
                 "Type=Application\n" +
                 "Name=Foo Viewer\n" +
+                "Name[en_CA]=en_CA Foo Viewer\n" +
                 "NAME=Not the actual name - ignored\n" +
                 "Comment=The best viewer for Foo objects available!\n" +
                 "TryExec=fooview\n" +
@@ -73,4 +75,14 @@ public class DesktopEntryTest {
         assertTrue(entry.containsKey(DesktopEntry.GROUP_REQUIRED, "X-KDE-ServiceType"));
     }
 
+    @Test
+    public void testLocalizedNames() throws IOException {
+        DesktopEntry entry = createBasicDesktopEntry();
+        String value;
+        value = entry.getLocalizedValue(DesktopEntry.KEY_NAME, new Locale("en", "CA"));
+        assertEquals("en_CA Foo Viewer", value);
+
+        value = entry.getLocalizedValue(DesktopEntry.KEY_NAME, new Locale("en"));
+        assertEquals("Foo Viewer", value);
+    }
 }

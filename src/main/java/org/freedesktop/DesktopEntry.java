@@ -1,5 +1,7 @@
 package org.freedesktop;
 
+import java.util.Locale;
+
 /**
  * An interface to the Desktop Entry Specification.
  * 
@@ -73,6 +75,32 @@ public class DesktopEntry extends IniStyleFile {
 		knownTypes.put(KEY_STARTUP_WM_CLASS, ValueType.STRING);
 		knownTypes.put(KEY_URL, ValueType.STRING);
 	}
+
+    public String getLocalizedValue(String key, Locale locale) {
+        return getLocalizedValue(defaultGroup, key, locale);
+    }
+
+    public String getLocalizedValue(String group, String key, Locale locale) {
+        String suffix = locale.getLanguage();
+        if (!locale.getCountry().equals("")) {
+            suffix = suffix + "_" + locale.getCountry();
+        }
+        String result;
+
+        result = get(group, key + "[" + suffix + "]");
+        if (result != null) {
+            return result;
+        }
+
+        suffix = locale.getLanguage();
+        result = get(group, key + "[" + suffix + "]");
+        if (result != null) {
+            return result;
+        }
+
+        result = get(group, key);
+        return result;
+    }
 
 	@Override
 	protected void checkAllValid() {
