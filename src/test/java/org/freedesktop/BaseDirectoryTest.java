@@ -55,11 +55,11 @@ public class BaseDirectoryTest {
     @Test
     public void testConfigHomeWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
-        env.put("XDG_CONFIG_DIRS", "${XDG_CONFIG_DIRS}");
+        env.put("XDG_CONFIG_HOME", "${XDG_CONFIG_HOME}");
         BaseDirectory.setEnvironment(env);
-        String dir = BaseDirectory.get(BaseDirectory.XDG_CONFIG_DIRS);
+        String dir = BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME);
         assertNotNull(dir);
-        assertEquals("${XDG_CONFIG_DIRS}", dir);
+        assertEquals("${XDG_CONFIG_HOME}", dir);
     }
 
     @Test
