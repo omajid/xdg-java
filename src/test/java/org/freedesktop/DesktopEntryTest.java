@@ -32,6 +32,7 @@ public class DesktopEntryTest {
                 "Version=1.0\n" +
                 "Type=Application\n" +
                 "Name=Foo Viewer\n" +
+                "NAME=Not the actual name - ignored\n" +
                 "Comment=The best viewer for Foo objects available!\n" +
                 "TryExec=fooview\n" +
                 "Exec=fooview %F\n" +
@@ -39,7 +40,10 @@ public class DesktopEntryTest {
                 "MimeType=image/x-foo;\n" +
                 "X-KDE-Library=libfooview\n" +
                 "X-KDE-FactoryName=fooviewfactory\n" +
-                "X-KDE-ServiceType=FooService\n";
+                "X-KDE-ServiceType=FooService\n" +
+                "[Another Group]\n" +
+                "Version=1.1\n" +
+                "Icon=icon\n";
         DesktopEntry entry = new DesktopEntry(new IniStyleFileReader(new BufferedReader(new StringReader(input))).read());
         return entry;
     }
