@@ -9,8 +9,8 @@ import java.util.Locale;
  */
 public class DesktopEntry extends IniStyleFile {
 
-    public static final String FILE_EXTENSION_FILE = ".desktop";
-    public static final String FILE_EXTENSION_DIRECTORY = ".directory";
+    public static final String EXTENSION_FILE = ".desktop";
+    public static final String EXTENSION_DIRECTORY = ".directory";
     public static final String FILE_CHARSET = "UTF-8";
 
     public static final String GROUP_REQUIRED = "Desktop Entry";
@@ -52,28 +52,28 @@ public class DesktopEntry extends IniStyleFile {
     }
 
     private void initKnownTypes() {
-        knownTypes.put(KEY_TYPE, ValueType.STRING);
-        knownTypes.put(KEY_VERSION, ValueType.STRING);
-        knownTypes.put(KEY_NAME, ValueType.LOCALE_STRING);
-        knownTypes.put(KEY_GENERIC_NAME, ValueType.LOCALE_STRING);
-        knownTypes.put(KEY_NO_DISPLAY, ValueType.BOOLEAN);
-        knownTypes.put(KEY_COMMENT, ValueType.LOCALE_STRING);
-        knownTypes.put(KEY_ICON, ValueType.LOCALE_STRING);
-        knownTypes.put(KEY_HIDDEN, ValueType.BOOLEAN);
-        knownTypes.put(KEY_ONLY_SHOW_IN, ValueType.STRINGS);
-        knownTypes.put(KEY_NOT_SHOW_IN, ValueType.STRINGS);
-        knownTypes.put(KEY_DBUS_ACTIVATABLE, ValueType.BOOLEAN);
-        knownTypes.put(KEY_TRY_EXEC, ValueType.STRING);
-        knownTypes.put(KEY_EXEC, ValueType.STRING);
-        knownTypes.put(KEY_PATH, ValueType.STRING);
-        knownTypes.put(KEY_TERMINAL, ValueType.BOOLEAN);
-        knownTypes.put(KEY_ACTIONS, ValueType.STRINGS);
-        knownTypes.put(KEY_MIME_TYPE, ValueType.STRINGS);
-        knownTypes.put(KEY_CATEGORIES, ValueType.STRINGS);
-        knownTypes.put(KEY_KEYWORDS, ValueType.LOCALE_STRING);
-        knownTypes.put(KEY_STARTUP_NOTIFY, ValueType.BOOLEAN);
-        knownTypes.put(KEY_STARTUP_WM_CLASS, ValueType.STRING);
-        knownTypes.put(KEY_URL, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_TYPE, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_VERSION, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_NAME, ValueType.LOCALE_STRING);
+        addKnownType(GROUP_DEFAULT, KEY_GENERIC_NAME, ValueType.LOCALE_STRING);
+        addKnownType(GROUP_DEFAULT, KEY_NO_DISPLAY, ValueType.BOOLEAN);
+        addKnownType(GROUP_DEFAULT, KEY_COMMENT, ValueType.LOCALE_STRING);
+        addKnownType(GROUP_DEFAULT, KEY_ICON, ValueType.LOCALE_STRING);
+        addKnownType(GROUP_DEFAULT, KEY_HIDDEN, ValueType.BOOLEAN);
+        addKnownType(GROUP_DEFAULT, KEY_ONLY_SHOW_IN, ValueType.STRINGS);
+        addKnownType(GROUP_DEFAULT, KEY_NOT_SHOW_IN, ValueType.STRINGS);
+        addKnownType(GROUP_DEFAULT, KEY_DBUS_ACTIVATABLE, ValueType.BOOLEAN);
+        addKnownType(GROUP_DEFAULT, KEY_TRY_EXEC, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_EXEC, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_PATH, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_TERMINAL, ValueType.BOOLEAN);
+        addKnownType(GROUP_DEFAULT, KEY_ACTIONS, ValueType.STRINGS);
+        addKnownType(GROUP_DEFAULT, KEY_MIME_TYPE, ValueType.STRINGS);
+        addKnownType(GROUP_DEFAULT, KEY_CATEGORIES, ValueType.STRINGS);
+        addKnownType(GROUP_DEFAULT, KEY_KEYWORDS, ValueType.LOCALE_STRING);
+        addKnownType(GROUP_DEFAULT, KEY_STARTUP_NOTIFY, ValueType.BOOLEAN);
+        addKnownType(GROUP_DEFAULT, KEY_STARTUP_WM_CLASS, ValueType.STRING);
+        addKnownType(GROUP_DEFAULT, KEY_URL, ValueType.STRING);
     }
 
     public String getLocalizedValue(String key, Locale locale) {
@@ -109,10 +109,10 @@ public class DesktopEntry extends IniStyleFile {
     }
 
     @Override
-    protected void checkValidKeyValue(String key, String value) {
-        super.checkValidKeyValue(key, value);
+    protected void checkValidKeyValue(String group, String key, String value) {
+        super.checkValidKeyValue(group, key, value);
 
-        if (key.equals(KEY_EXEC)) {
+        if (group.equals(GROUP_DEFAULT) && key.equals(KEY_EXEC)) {
             checkValidExecValue(value);
         }
     }

@@ -19,7 +19,8 @@ public class IniStyleFile {
     }
 
     protected final Map<String, Map<String, String>> data;
-    protected final Map<String, ValueType> knownTypes;
+    protected final Map<String, Map<String, ValueType>> knownTypes;
+
     protected final String defaultGroup;
 
     public IniStyleFile() {
@@ -28,8 +29,8 @@ public class IniStyleFile {
 
     public IniStyleFile(String defaultGroup) {
         this.defaultGroup = defaultGroup;
-        this.data = new HashMap<String, Map<String, String>>();
-        this.knownTypes = new HashMap<String, ValueType>();
+        this.data = new HashMap<>();
+        this.knownTypes = new HashMap<>();
     }
 
     public IniStyleFile(IniStyleFile other) {
@@ -55,16 +56,9 @@ public class IniStyleFile {
 
     }
 
-    /**
-     * Add a key/value to the named group.
-     *
-     * @param group the group name.
-     * @param key
-     * @param value
-     */
     public void add(String group, String key, String value) {
         checkValidGroupName(group);
-        checkValidKeyValue(key, value);
+        checkValidKeyValue(group, key, value);
 
         if (!(data.containsKey(group))) {
             addGroup(group);
@@ -159,29 +153,30 @@ public class IniStyleFile {
 
     protected void checkAllValid() {
         for (Entry<String, Map<String, String>> group : data.entrySet()) {
-            checkValidGroupName(group.getKey());
+            String groupName = group.getKey();
+            checkValidGroupName(groupName);
             for (Entry<String, String> entry : group.getValue().entrySet()) {
-                checkValidKeyValue(entry.getKey(), entry.getValue());
+                checkValidKeyValue(groupName, entry.getKey(), entry.getValue());
             }
         }
     }
 
     protected void checkValidGroupName(String group) {
         if (group == null) {
-            throw new IllegalArgumentException("null");
+            throw new IllegalArgumentException("Group name is null");
         }
         if (group.trim().length() == 0) {
-            throw new IllegalArgumentException("empty name of group");
+            throw new IllegalArgumentException("Group name is empty");
         }
         if (group.contains("[") || group.contains("]")) {
-            throw new IllegalArgumentException("group name contains invalid character");
+            throw new IllegalArgumentException("Group name contains invalid character");
         }
         if (group.contains("\n")) {
-            throw new IllegalArgumentException("newline");
+            throw new IllegalArgumentException("Group name contains a newline");
         }
     }
 
-    protected void checkValidKeyValue(String key, String value) {
+    protected void checkValidKeyValue(String group, String key, String value) {
         if (key == null || key.contains("\n") || key.contains("=") || key.trim().length() == 0) {
             throw new IllegalArgumentException();
         }
@@ -189,9 +184,11 @@ public class IniStyleFile {
             throw new IllegalArgumentException();
         }
         if (knownTypes.containsKey(key)) {
-            ValueType valueType = knownTypes.get(key);
+            Map<String, ValueType> knownGroup = knownTypes.get(group);
+            ValueType valueType = knownGroup == null ? null : knownGroup.get(key);
             if (valueType == ValueType.LOCALE_STRING) {
                 // pass
+                // FIXME newlines?
             } else {
                 if (key.contains("[") || key.contains("]")) {
                     throw new IllegalArgumentException("non-locale key contains '[' or ']'");
@@ -226,5 +223,13 @@ public class IniStyleFile {
             return false;
         }
 
+    }
+
+    public void addKnownType(String group, String key, ValueType valueType) {
+        Map<String, ValueType> groupType = knownTypes.get(group);
+        if (groupType == null) {
+            groupType = new HashMap<String, ValueType>();
+        }
+        knownTypes.put(group, groupType);
     }
 }
