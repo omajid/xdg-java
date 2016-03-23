@@ -7,14 +7,13 @@ import java.util.Map;
 public class IniStyleFileWriter {
     private final Writer writer;
 
+    /**
+     * @param writer the writer must be using a utf-8 encoding
+     */
     public IniStyleFileWriter(Writer writer) {
         this.writer = writer;
     }
 
-    /**
-     * @param writer the writer must be using a utf-8 encoding
-     * @throws IOException
-     */
     public void write(IniStyleFile file) throws IOException {
         writeGroup(file, DesktopEntry.GROUP_DEFAULT);
         for (String name : file.data.keySet()) {
