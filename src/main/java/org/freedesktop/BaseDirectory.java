@@ -15,27 +15,32 @@ public class BaseDirectory {
      * data should be written
      */
     public static final String XDG_CACHE_HOME = "XDG_CACHE_HOME";
+
     /**
      * base directory relative to which user-specific configuration files should
      * be written
      */
     public static final String XDG_CONFIG_HOME = "XDG_CONFIG_HOME";
+
     /**
      * set of preference ordered base directories relative to which
      * configuration files should be searched. The directories are separated by
      * by {@link File#pathSeparator}
      */
     public static final String XDG_CONFIG_DIRS = "XDG_CONFIG_DIRS";
+
     /**
      * base directory relative to which user-specific data files should be
      * written
      */
     public static final String XDG_DATA_HOME = "XDG_DATA_HOME";
+
     /**
      * set of preference ordered base directories relative to which data files
      * should be searched. Directories are separated by {@link File#pathSeparator}
      */
     public static final String XDG_DATA_DIRS = "XDG_DATA_DIRS";
+
     /**
      * base directory relative to which user-specific runtime files and other
      * file objects should be placed. May be {@code null}.
