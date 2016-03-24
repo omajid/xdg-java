@@ -13,17 +13,18 @@ Specifications
 
 The following specifications are currently implemented:
 
-- The [Base Directory Specification](http://www.freedesktop.org/wiki/Specifications/menu-spec/).
+### [Base Directory Specification](http://www.freedesktop.org/wiki/Specifications/menu-spec/).
 
-      File cacheFile = new File(BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME), "myCache");
+
+    File cacheFile = new File(BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME), "myCache");
 
     
-- The [Desktop Entry Specification](http://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)
+### The [Desktop Entry Specification](http://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)
 
 
-      BufferedReader reader = new BufferedReader(new FileReader("some.desktop"));
-      DesktopEntry entry = new DesktopEntryReader(reader).read();
-      System.out.println("Name: " + entry.get(DesktopEntry.KEY_NAME));
+    BufferedReader reader = new BufferedReader(new FileReader("some.desktop"));
+    DesktopEntry entry = new DesktopEntryReader(reader).read();
+    System.out.println("Name: " + entry.get(DesktopEntry.KEY_NAME));
 
 
 Install
