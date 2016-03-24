@@ -13,14 +13,21 @@ Specifications
 
 The following specifications are currently implemented:
 
-### [Base Directory Specification](http://www.freedesktop.org/wiki/Specifications/menu-spec/).
+### [Base Directory Specification](http://www.freedesktop.org/wiki/Specifications/menu-spec/)
 
+Use this to access standard directories for data, cache and
+configuration.
+
+Here's how to find the path to a cache file with the name `myCache`:
 
     File cacheFile = new File(BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME), "myCache");
 
     
 ### The [Desktop Entry Specification](http://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)
 
+Use this to read and write desktop entries, with full validation.
+
+Here's how to read a desktop entry named `some.desktop`:
 
     BufferedReader reader = new BufferedReader(new FileReader("some.desktop"));
     DesktopEntry entry = new DesktopEntryReader(reader).read();
