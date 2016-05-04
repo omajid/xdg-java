@@ -13,7 +13,7 @@ Specifications
 
 The following specifications are currently implemented:
 
-### [Base Directory Specification](http://www.freedesktop.org/wiki/Specifications/menu-spec/)
+### [Base Directory Specification](https://www.freedesktop.org/wiki/Specifications/basedir-spec/)
 
 Use this to access standard directories for data, cache and
 configuration.
