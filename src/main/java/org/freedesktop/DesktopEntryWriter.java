@@ -5,16 +5,16 @@ import java.io.Writer;
 
 public class DesktopEntryWriter {
 
-    private IniStyleFileWriter delgate;
+    private IniStyleFileWriter delegate;
 
     /**
      * @param writer the writer must be using a utf-8 encoding
      */
     public DesktopEntryWriter(Writer writer) {
-        this.delgate = new IniStyleFileWriter(writer);
+        this.delegate = new IniStyleFileWriter(writer);
     }
 
     public void write(DesktopEntry file) throws IOException {
-        delgate.write(file);
+        delegate.write(file);
     }
 }
