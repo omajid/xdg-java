@@ -221,6 +221,74 @@ public class IniStyleFileTest {
         entry.add("key", "value\nvalue");
     }
 
+    @Test
+    public void testAddingKnownLocaleStringValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.LOCALE_STRING);
+        entry.add("FOO", "BAR", "[en_US]");
+    }
+
+    @Test
+    public void testAddingKnownStringsValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.STRINGS);
+        entry.add("FOO", "BAR", "GNOME:UNITY");
+    }
+
+    @Test
+    public void testAddingKnownStringValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.STRING);
+        entry.add("FOO", "BAR", "foo");
+    }
+
+    // TODO
+    // @Test
+    // public void testAddingKnownIntegersValueType() {
+    // }
+
+    // TODO
+    // @Test(expected = IllegalArgumentException.class)
+    // public void testKnownValueTypeRejectsBadIntegersValueType() {
+    // }
+
+    @Test
+    public void testAddingKnownIntegerValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.INTEGER);
+        entry.add("FOO", "BAR", "10");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testKnownValueTypeRejectsBadIntegerValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.INTEGER);
+        entry.add("FOO", "BAR", "ten");
+    }
+
+    @Test
+    public void testAddingKnownBooleanValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.BOOLEAN);
+        entry.add("FOO", "BAR", "true");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testKnownValueTypeRejectsBadBooleanValueType() {
+        IniStyleFile entry = new IniStyleFile();
+        entry.addKnownType("FOO", "BAR", IniStyleFile.ValueType.BOOLEAN);
+        entry.add("FOO", "BAR", "falsy");
+    }
+
+    // TODO
+    // @Test
+    // public void testAddingKnownPointsValueType() {
+    // }
+
+    // TODO
+    // @Test(expected = IllegalArgumentException.class)
+    // public void testKnownValueTypeRejectsBadPointsValueType() {
+    // }
 
     /*
      * Contains key/value

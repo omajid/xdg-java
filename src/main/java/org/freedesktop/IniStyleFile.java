@@ -183,7 +183,7 @@ public class IniStyleFile {
         if (value == null || value.contains("\n")) {
             throw new IllegalArgumentException();
         }
-        if (knownTypes.containsKey(key)) {
+        if (knownTypes.containsKey(group)) {
             Map<String, ValueType> knownGroup = knownTypes.get(group);
             ValueType valueType = knownGroup == null ? null : knownGroup.get(key);
             if (valueType == ValueType.LOCALE_STRING) {
@@ -229,7 +229,8 @@ public class IniStyleFile {
         Map<String, ValueType> groupType = knownTypes.get(group);
         if (groupType == null) {
             groupType = new HashMap<String, ValueType>();
+            knownTypes.put(group, groupType);
         }
-        knownTypes.put(group, groupType);
+        groupType.put(key, valueType);
     }
 }
