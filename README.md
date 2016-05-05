@@ -20,7 +20,7 @@ configuration.
 
 Here's how to find the path to a cache file with the name `myCache`:
 
-    File cacheFile = new File(BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME), "myCache");
+    File cacheFile = new File(BaseDirectory.get(BaseDirectory.XDG_CACHE_HOME), "myCache");
 
     
 ### The [Desktop Entry Specification](http://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/)
