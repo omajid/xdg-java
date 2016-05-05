@@ -13,7 +13,6 @@ If you are looking to contribute features please create a pull
 request. If you are looking for contribution ideas, the following
 specifications are excellent candidates:
 
-The following specifications are planned:
 - The [Desktop Menu Specification](https://www.freedesktop.org/wiki/Specifications/menu-spec/)
 - The [Desktop Trash Can Specification](https://www.freedesktop.org/wiki/Specifications/trash-spec/)
 - The [Icon Theme Specification](http://www.freedesktop.org/wiki/Specifications/icon-theme-spec/)
