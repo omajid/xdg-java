@@ -13,7 +13,7 @@ import org.junit.Test;
 public class BaseDirectoryTest {
 
     private Map<String, String> buildCustomEnvironment() {
-        Map<String, String> environment = new HashMap<String, String>();
+        Map<String, String> environment = new HashMap<>();
         environment.put("HOME", "${HOME}");
         return environment;
     }

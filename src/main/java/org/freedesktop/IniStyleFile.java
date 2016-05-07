@@ -132,7 +132,7 @@ public class IniStyleFile {
     }
 
     public Set<String> getGroupNames() {
-        return new TreeSet<String>(data.keySet());
+        return new TreeSet<>(data.keySet());
     }
 
     public Map<String, String> getGroup(String group) {
@@ -140,7 +140,7 @@ public class IniStyleFile {
             return null;
         }
 
-        return new HashMap<String, String>(data.get(group));
+        return new HashMap<>(data.get(group));
     }
 
     public void removeGroup(String groupName) {
@@ -228,7 +228,7 @@ public class IniStyleFile {
     public void addKnownType(String group, String key, ValueType valueType) {
         Map<String, ValueType> groupType = knownTypes.get(group);
         if (groupType == null) {
-            groupType = new HashMap<String, ValueType>();
+            groupType = new HashMap<>();
             knownTypes.put(group, groupType);
         }
         groupType.put(key, valueType);
