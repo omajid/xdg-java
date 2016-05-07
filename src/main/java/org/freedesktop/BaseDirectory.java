@@ -60,20 +60,21 @@ public class BaseDirectory {
      * variable(s) are undefined.
      */
     public static String get(String name) {
-        if (name.equals(XDG_CACHE_HOME)) {
-            return getCacheHome();
-        } else if (name.equals(XDG_CONFIG_HOME)) {
-            return getConfigHome();
-        } else if (name.equals(XDG_CONFIG_DIRS)) {
-            return getConfigDirs();
-        } else if (name.equals(XDG_DATA_HOME)) {
-            return getDataHome();
-        } else if (name.equals(XDG_DATA_DIRS)) {
-            return getDataDirs();
-        } else if (name.equals(XDG_RUNTIME_DIR)) {
-            return getRuntimeDir();
-        } else {
-            return null;
+        switch (name) {
+            case XDG_CACHE_HOME:
+                return getCacheHome();
+            case XDG_CONFIG_HOME:
+                return getConfigHome();
+            case XDG_CONFIG_DIRS:
+                return getConfigDirs();
+            case XDG_DATA_HOME:
+                return getDataHome();
+            case XDG_DATA_DIRS:
+                return getDataDirs();
+            case XDG_RUNTIME_DIR:
+                return getRuntimeDir();
+            default:
+                return null;
         }
     }
 
