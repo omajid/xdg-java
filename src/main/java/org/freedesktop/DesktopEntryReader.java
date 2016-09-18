@@ -11,7 +11,7 @@ public class DesktopEntryReader {
         delegate = new IniStyleFileReader(reader);
     }
 
-    public IniStyleFile read() throws IOException {
+    public DesktopEntry read() throws IOException {
         return new DesktopEntry(delegate.read());
     }
 
