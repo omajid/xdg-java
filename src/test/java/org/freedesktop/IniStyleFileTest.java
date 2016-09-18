@@ -129,7 +129,22 @@ public class IniStyleFileTest {
     public void testGetGroupMissing() {
         IniStyleFile file = new IniStyleFile("default-group");
         Map<String, String> group = file.getGroup("some-random-group");
-        assertTrue(group == null);
+        assertEquals(null, group);
+    }
+
+    @Test
+    public void testGetDefaultGroupName() {
+        IniStyleFile file = new IniStyleFile("default-group");
+        String groupName = file.getDefaultGroupName();
+        assertEquals("default-group", groupName);
+    }
+
+    @Test
+    public void testGetDefaultGroupMissing() {
+        IniStyleFile file = new IniStyleFile("default-group");
+        String defaultGroup = file.getDefaultGroupName();
+        Map<String, String> group = file.getGroup(defaultGroup);
+        assertEquals(null, group);
     }
 
     @Test

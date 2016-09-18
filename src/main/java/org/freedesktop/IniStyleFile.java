@@ -131,6 +131,10 @@ public class IniStyleFile {
         data.get(group).remove(key);
     }
 
+    public String getDefaultGroupName() {
+        return defaultGroup;
+    }
+
     public Set<String> getGroupNames() {
         return new TreeSet<>(data.keySet());
     }
