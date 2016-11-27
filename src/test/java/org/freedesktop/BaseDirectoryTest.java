@@ -11,6 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class BaseDirectoryTest {
+    void setEnvironment(Map<String,String> env) {
+        Platform.environment = env;
+        BaseDirectory.environment = env;
+    }
+
 
     private Map<String, String> buildCustomEnvironment() {
         Map<String, String> environment = new HashMap<>();
@@ -20,12 +25,12 @@ public class BaseDirectoryTest {
 
     @Before
     public void setUp() {
-        BaseDirectory.setEnvironment(System.getenv());
+        setEnvironment(System.getenv());
     }
 
     @After
     public void tearDown() {
-        BaseDirectory.setEnvironment(System.getenv());
+        setEnvironment(System.getenv());
     }
 
     @Test
@@ -38,7 +43,7 @@ public class BaseDirectoryTest {
     public void testDataHomeWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
         env.put("XDG_DATA_HOME", "${XDG_DATA_HOME}");
-        BaseDirectory.setEnvironment(env);
+        setEnvironment(env);
         String dataHome = BaseDirectory.get(BaseDirectory.XDG_DATA_HOME);
         assertNotNull(dataHome);
         assertEquals("${XDG_DATA_HOME}", dataHome);
@@ -46,7 +51,7 @@ public class BaseDirectoryTest {
 
     @Test
     public void testDataHomeDefault() {
-        BaseDirectory.setEnvironment(buildCustomEnvironment());
+        setEnvironment(buildCustomEnvironment());
         String dataHome = BaseDirectory.get(BaseDirectory.XDG_DATA_HOME);
         assertNotNull(dataHome);
         assertEquals("${HOME}/.local/share", dataHome);
@@ -56,7 +61,7 @@ public class BaseDirectoryTest {
     public void testConfigHomeWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
         env.put("XDG_CONFIG_HOME", "${XDG_CONFIG_HOME}");
-        BaseDirectory.setEnvironment(env);
+        setEnvironment(env);
         String dir = BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME);
         assertNotNull(dir);
         assertEquals("${XDG_CONFIG_HOME}", dir);
@@ -64,7 +69,7 @@ public class BaseDirectoryTest {
 
     @Test
     public void testConfigHomeDefault() {
-        BaseDirectory.setEnvironment(buildCustomEnvironment());
+        setEnvironment(buildCustomEnvironment());
         String configHome = BaseDirectory.get(BaseDirectory.XDG_CONFIG_HOME);
         assertNotNull(configHome);
         assertEquals("${HOME}/.config", configHome);
@@ -74,7 +79,7 @@ public class BaseDirectoryTest {
     public void testDataDirsWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
         env.put("XDG_DATA_DIRS", "${XDG_DATA_DIRS}");
-        BaseDirectory.setEnvironment(env);
+        setEnvironment(env);
         String dataDirs = BaseDirectory.get(BaseDirectory.XDG_DATA_DIRS);
         assertNotNull(dataDirs);
         assertEquals("${XDG_DATA_DIRS}", dataDirs);
@@ -82,7 +87,7 @@ public class BaseDirectoryTest {
 
     @Test
     public void testDataDirsDefault() {
-        BaseDirectory.setEnvironment(buildCustomEnvironment());
+        setEnvironment(buildCustomEnvironment());
         String dataDirs = BaseDirectory.get(BaseDirectory.XDG_DATA_DIRS);
         assertNotNull(dataDirs);
         assertEquals("/usr/local/share/:/usr/share/", dataDirs);
@@ -92,7 +97,7 @@ public class BaseDirectoryTest {
     public void testConfigDirsWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
         env.put("XDG_CONFIG_DIRS", "${XDG_CONFIG_DIRS}");
-        BaseDirectory.setEnvironment(env);
+        setEnvironment(env);
         String configDirs = BaseDirectory.get(BaseDirectory.XDG_CONFIG_DIRS);
         assertNotNull(configDirs);
         assertEquals("${XDG_CONFIG_DIRS}", configDirs);
@@ -100,7 +105,7 @@ public class BaseDirectoryTest {
 
     @Test
     public void testConfigDirsDefault() {
-        BaseDirectory.setEnvironment(buildCustomEnvironment());
+        setEnvironment(buildCustomEnvironment());
         String configDirs = BaseDirectory.get(BaseDirectory.XDG_CONFIG_DIRS);
         assertNotNull(configDirs);
         assertEquals("/etc/xdg", configDirs);
@@ -111,7 +116,7 @@ public class BaseDirectoryTest {
     public void testCacheHomeWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
         env.put("XDG_CACHE_HOME", "${XDG_CACHE_HOME}");
-        BaseDirectory.setEnvironment(env);
+        setEnvironment(env);
         String dir = BaseDirectory.get(BaseDirectory.XDG_CACHE_HOME);
         assertNotNull(dir);
         assertEquals("${XDG_CACHE_HOME}", dir);
@@ -119,7 +124,7 @@ public class BaseDirectoryTest {
 
     @Test
     public void testCacheHomeDefault() {
-        BaseDirectory.setEnvironment(buildCustomEnvironment());
+        setEnvironment(buildCustomEnvironment());
         String dir = BaseDirectory.get(BaseDirectory.XDG_CACHE_HOME);
         assertNotNull(dir);
         assertEquals("${HOME}/.cache", dir);
@@ -129,7 +134,7 @@ public class BaseDirectoryTest {
     public void testRuntimeDirWithEnvSet() {
         Map<String, String> env = buildCustomEnvironment();
         env.put("XDG_RUNTIME_DIR", "${XDG_RUNTIME_DIR}");
-        BaseDirectory.setEnvironment(env);
+        setEnvironment(env);
         String runtimeDir = BaseDirectory.get(BaseDirectory.XDG_RUNTIME_DIR);
         assertNotNull(runtimeDir);
         assertEquals("${XDG_RUNTIME_DIR}", runtimeDir);
@@ -137,14 +142,14 @@ public class BaseDirectoryTest {
 
     @Test
     public void testRuntimeDirWithoutEnvSet() {
-        BaseDirectory.setEnvironment(buildCustomEnvironment());
+        setEnvironment(buildCustomEnvironment());
         String runtimeDir = BaseDirectory.get(BaseDirectory.XDG_RUNTIME_DIR);
         assertEquals(null, runtimeDir);
     }
 
     @Test
     public void testRuntimeDirMatchesSystemEnv() {
-        BaseDirectory.setEnvironment(System.getenv());
+        setEnvironment(System.getenv());
         String runtimeDir = BaseDirectory.get(BaseDirectory.XDG_RUNTIME_DIR);
         assertEquals(System.getenv("XDG_RUNTIME_DIR"), runtimeDir);
     }
