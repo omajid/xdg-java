@@ -47,7 +47,7 @@ public class BaseDirectory {
      */
     public static final String XDG_RUNTIME_DIR = "XDG_RUNTIME_DIR";
 
-    private static Map<String,String> environment = System.getenv();
+    static Map<String,String> environment = Platform.environment;
 
     /**
      * Get the base directory or set of base directories defined by the
@@ -76,11 +76,6 @@ public class BaseDirectory {
             default:
                 return null;
         }
-    }
-
-    /** This is meant only for testing */
-    static void setEnvironment(Map<String,String> env) {
-        environment = env;
     }
 
     private static String getCacheHome() {
