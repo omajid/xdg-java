@@ -47,7 +47,7 @@ public class BaseDirectory {
      */
     public static final String XDG_RUNTIME_DIR = "XDG_RUNTIME_DIR";
 
-    private static Map<String,String> environment = System.getenv();
+    static Map<String,String> environment = Platform.environment;
 
     /**
      * Get the base directory or set of base directories defined by the
@@ -78,15 +78,10 @@ public class BaseDirectory {
         }
     }
 
-    /** This is meant only for testing */
-    static void setEnvironment(Map<String,String> env) {
-        environment = env;
-    }
-
     private static String getCacheHome() {
         String value = environment.get(XDG_CACHE_HOME);
         if (value == null || value.trim().length() == 0) {
-            String XDG_CACHE_HOME_DEFAULT = environment.get("HOME") + File.separator + ".cache";
+            String XDG_CACHE_HOME_DEFAULT = Platform.getCurrent().getCacheHome();
             value = XDG_CACHE_HOME_DEFAULT;
         }
         return value;
@@ -95,7 +90,7 @@ public class BaseDirectory {
     private static String getConfigHome() {
         String value = environment.get(XDG_CONFIG_HOME);
         if (value == null || value.trim().length() == 0) {
-            String XDG_CONFIG_HOME_DEFAULT = environment.get("HOME") + File.separator + ".config";
+            String XDG_CONFIG_HOME_DEFAULT = Platform.getCurrent().getConfigHome();
             value = XDG_CONFIG_HOME_DEFAULT;
         }
         return value;
@@ -104,7 +99,7 @@ public class BaseDirectory {
     private static String getConfigDirs() {
         String value = environment.get(XDG_CONFIG_DIRS);
         if (value == null || value.trim().length() == 0) {
-            String XDG_CONFIG_DIRS_DEFAULT = File.separator + "etc" + File.separator + "xdg";
+            String XDG_CONFIG_DIRS_DEFAULT = Platform.getCurrent().getConfigDirs();
             value = XDG_CONFIG_DIRS_DEFAULT;
         }
         return value;
@@ -113,8 +108,7 @@ public class BaseDirectory {
     private static String getDataHome() {
         String value = environment.get(XDG_DATA_HOME);
         if (value == null || value.trim().length() == 0) {
-            String XDG_DATA_HOME_DEFAULT = environment.get("HOME") +
-                    File.separator + ".local" + File.separator + "share";
+            String XDG_DATA_HOME_DEFAULT = Platform.getCurrent().getDataHome();
             value = XDG_DATA_HOME_DEFAULT;
         }
         return value;
@@ -123,9 +117,7 @@ public class BaseDirectory {
     private static String getDataDirs() {
         String value = environment.get(XDG_DATA_DIRS);
         if (value == null || value.trim().length() == 0) {
-            String XDG_DATA_DIRS_DEFAULT = File.separator + "usr" + File.separator + "local" + File.separator + "share" + File.separator;
-            XDG_DATA_DIRS_DEFAULT = XDG_DATA_DIRS_DEFAULT + File.pathSeparator;
-            XDG_DATA_DIRS_DEFAULT = XDG_DATA_DIRS_DEFAULT + File.separator + "usr" + File.separator + "share" + File.separator;
+            String XDG_DATA_DIRS_DEFAULT = Platform.getCurrent().getDataDirs();
             value = XDG_DATA_DIRS_DEFAULT;
         }
         return value;
@@ -133,6 +125,10 @@ public class BaseDirectory {
 
     private static String getRuntimeDir() {
         String value = environment.get(XDG_RUNTIME_DIR);
+        if (value == null || value.trim().length() == 0) {
+            String XDG_RUNTIME_DIR_DEFAULT = Platform.getCurrent().getRuntimeDir();
+            value = XDG_RUNTIME_DIR_DEFAULT;
+        }
         return value;
     }
 
