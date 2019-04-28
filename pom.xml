@@ -14,6 +14,36 @@
     <url>https://github.com/kothar/xdg-java</url>
     <description>Java bindings for various FreeDesktop.org standards</description>
 
+    <developers>
+        <developer>
+            <name>Omair Majid</name>
+            <url>https://github.com/omajid</url>
+        </developer>
+        <developer>
+            <name>Michael Houston</name>
+            <email>mike@kothar.net</email>
+            <organization>Kothar Labs</organization>
+            <organizationUrl>https://kothar.net</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>GNU LESSER GENERAL PUBLIC LICENSE Version 2.1</name>
+            <url>https://opensource.org/licenses/LGPL-2.1</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/kothar/xdg-java</url>
+        <developerConnection>scm:git:git@github.com:kothar/xdg-java.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/kothar/xdg-java/issues</url>
+    </issueManagement>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
