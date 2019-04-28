@@ -8,7 +8,7 @@
 
     <groupId>net.kothar</groupId>
     <artifactId>xdg-java</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <name>XDG Java Utilities</name>
     <url>https://github.com/kothar/xdg-java</url>
